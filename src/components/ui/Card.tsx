@@ -13,7 +13,7 @@ export function Card({ children, className, hover = true }: CardProps) {
     <motion.div
       whileHover={hover ? { y: -5, scale: 1.02 } : {}}
       className={cn(
-        "clean-card rounded-xl shadow-soft overflow-hidden",
+        "bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden",
         className,
       )}
     >

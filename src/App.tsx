@@ -2,16 +2,29 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
-import Home from "./components/pages/Home";
-import Rooms from "./components/pages/Rooms";
-import Contact from "./components/pages/Contact";
+import Home from "./pages/Home";
+import Rooms from "./pages/Rooms";
+import Contact from "./pages/Contact";
 
 function App() {
   const [activeSection, setActiveSection] = useState("home");
 
-  const handleSectionChange = (section: string) => {
+  const handleSectionChange = (section: string, scrollToElement?: string) => {
     setActiveSection(section);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    // Small delay to ensure the component has rendered
+    setTimeout(() => {
+      if (scrollToElement) {
+        const element = document.getElementById(scrollToElement);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }, 100);
   };
 
   const renderActiveSection = () => {

@@ -8,8 +8,6 @@ export const HOMESTAY_INFO = {
   features: [
     "Phòng nghỉ tiện nghi",
     "Wi-Fi miễn phí",
-    "Ăn sáng tự chọn",
-    "Dịch vụ giặt ủi",
     "Bãi đậu xe",
     "Hỗ trợ 24/7",
   ],
@@ -24,36 +22,61 @@ export const NAVIGATION_ITEMS = [
 export const ROOMS = [
   {
     id: 1,
-    name: "Phòng Deluxe",
-    price: "800.000",
+    name: "Phòng DELUXE Ban Công",
+    priceNight: "500.000",
+    priceDayNight: "550.000",
     image:
       "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    features: ["Giường đôi", "Phòng tắm riêng", "Điều hòa", "TV thông minh"],
-    description: "Phòng rộng rãi với thiết kế hiện đại và đầy đủ tiện nghi",
+    features: [
+      "Nhà tắm riêng",
+      "Bếp chung",
+      "Bàn trang điểm",
+      "Tủ quần áo",
+      "Máy sấy, bàn ủi",
+      "Máy chiếu",
+      "Ghế bập bênh đôi",
+      "Ban công",
+    ],
+    description:
+      "Phòng deluxe với ban công thoáng mát, tầm nhìn đẹp và đầy đủ tiện nghi cao cấp",
   },
   {
     id: 2,
-    name: "Phòng Standard",
-    price: "600.000",
+    name: "Phòng Standard Plus Máy chiếu",
+    priceNight: "450.000",
+    priceDayNight: "500.000",
     image:
       "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    features: ["Giường đơn", "Phòng tắm chung", "Điều hòa", "WiFi"],
+    features: [
+      "Nhà tắm riêng",
+      "Bếp chung",
+      "Bàn trang điểm",
+      "Tủ quần áo",
+      "Máy sấy, bàn ủi",
+      "Máy chiếu",
+      "Điều hòa",
+    ],
     description:
-      "Phòng tiện nghi với không gian ấm cúng, phù hợp cho người đi công tác",
+      "Phòng standard plus với máy chiếu hiện đại, phù hợp cho giải trí và thư giãn",
   },
   {
     id: 3,
-    name: "Phòng Gia Đình",
-    price: "1.200.000",
+    name: "Phòng DELUXE Máy chiếu",
+    priceNight: "500.000",
+    priceDayNight: "550.000",
     image:
       "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
     features: [
-      "2 giường đôi",
-      "Phòng tắm riêng",
-      "Khu vực sinh hoạt",
-      "Tủ lạnh",
+      "Nhà tắm riêng",
+      "Bếp riêng",
+      "Bàn trang điểm",
+      "Tủ quần áo",
+      "Máy sấy, bàn ủi",
+      "Máy chiếu",
+      "Sofa đôi, bàn trà",
+      "Ban công",
     ],
     description:
-      "Không gian rộng rãi dành cho gia đình, có thể ở tối đa 6 người",
+      "Phòng deluxe cao cấp với máy chiếu 4K và không gian rộng rãi, sang trọng",
   },
 ] as const;
