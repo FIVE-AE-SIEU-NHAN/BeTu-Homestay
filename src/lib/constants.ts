@@ -15,7 +15,6 @@ export const HOMESTAY_INFO = {
 
 export const NAVIGATION_ITEMS = [
   { name: "Trang Chủ", href: "home", id: "home" },
-  { name: "Phòng", href: "rooms", id: "rooms" },
   { name: "Liên Hệ", href: "contact", id: "contact" },
 ] as const;
 
