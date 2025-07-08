@@ -22,9 +22,9 @@ import {
   Waves,
   Trees,
 } from "lucide-react";
-import { HOMESTAY_INFO, ROOMS } from "@/lib/constants";
-import { Card, CardContent } from "@/components/ui/Card";
-import Button from "@/components/ui/Button";
+import { HOMESTAY_INFO } from "@/lib/constants";
+import { Card } from "@/components/ui/Card";
+import Rooms from "./Rooms";
 
 interface HomeProps {
   onSectionChange: (section: string, scrollToElement?: string) => void;
@@ -235,7 +235,7 @@ export default function Home({ onSectionChange }: HomeProps) {
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => onSectionChange("rooms")}
+              onClick={() => onSectionChange("home", "rooms-section")}
               className="group relative px-10 py-5 bg-white text-orange-600 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 overflow-hidden"
             >
               <motion.div
@@ -353,13 +353,16 @@ export default function Home({ onSectionChange }: HomeProps) {
       </section>
 
       {/* Rooms Preview */}
-      <section className="py-24 bg-gradient-to-r from-orange-100 to-amber-100">
+      <section
+        id="rooms-section"
+        className="py-16 pb-7 bg-gradient-to-r from-orange-100 to-amber-100"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center"
           >
             <h2 className="text-5xl font-bold text-gradient mb-6 pb-3 drop-shadow-md/25">
               Phòng Nghỉ Sang Trọng
@@ -369,57 +372,7 @@ export default function Home({ onSectionChange }: HomeProps) {
               hiện đại
             </p>
           </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-            {ROOMS.slice(0, 3).map((room, index) => (
-              <motion.div
-                key={room.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2, duration: 0.6 }}
-                whileHover={{ y: -10 }}
-                className="group"
-              >
-                <Card className="overflow-hidden shadow-soft hover:shadow-2xl transition-all duration-500">
-                  <div className="relative overflow-hidden">
-                    <motion.img
-                      src={room.image}
-                      alt={room.name}
-                      className="w-full h-64 object-cover"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.5 }}
-                    />
-                    <div className="absolute top-4 right-4 gradient-primary text-white px-3 py-2 rounded-full font-semibold text-sm shadow-glow">
-                      Từ {room.priceNight}₫
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-orange-800 mb-2 drop-shadow-sm/30">
-                      {room.name}
-                    </h3>
-                    <p className="text-orange-600 text-sm drop-shadow-sm/20">
-                      {room.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <Button
-              onClick={() => onSectionChange("rooms")}
-              className="gradient-primary text-white px-8 py-4 text-lg font-bold shadow-glow hover:shadow-2xl"
-            >
-              Xem Tất Cả Phòng
-            </Button>
-          </motion.div>
+          <Rooms onSectionChange={onSectionChange} />
         </div>
       </section>
 
@@ -620,7 +573,7 @@ export default function Home({ onSectionChange }: HomeProps) {
               <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => onSectionChange("contact")}
+                onClick={() => onSectionChange("home", "rooms-section")}
                 className="px-10 py-5 bg-white text-orange-600 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300"
               >
                 Đặt Phòng Ngay
@@ -628,7 +581,7 @@ export default function Home({ onSectionChange }: HomeProps) {
               <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => onSectionChange("rooms")}
+                onClick={() => onSectionChange("home", "rooms-section")}
                 className="px-10 py-5 border-2 border-white text-white rounded-2xl font-bold text-lg backdrop-blur-sm hover:bg-white hover:text-orange-600 transition-all duration-300"
               >
                 Xem Bảng Giá
