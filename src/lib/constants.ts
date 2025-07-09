@@ -1,7 +1,7 @@
 export const HOMESTAY_INFO = {
   name: "BeTu Homestay",
   address: "357/10/13 Nguyễn Thị Thập, Phường 6, Mỹ Tho",
-  phone: "+84 xxx xxx xxx",
+  phone: "0931 077 099",
   email: "contact@betuhomestay.com",
   description:
     "Trải nghiệm không gian ấm cúng và hiện đại tại BeTu Homestay - nơi mang đến cho bạn cảm giác như ở nhà giữa lòng Mỹ Tho.",
@@ -25,19 +25,29 @@ export const ROOMS = [
     priceNight: "500.000",
     priceDayNight: "550.000",
     image:
-      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      "/deluxe/deluxe.png",
+    gallery: [
+      "/deluxe/deluxe1.png",
+      "/deluxe/deluxe2.png",
+      "/deluxe/deluxe3.png",
+      "/slides/slide3.png",
+      "/deluxe/deluxe4.png",
+      "/deluxe/deluxe.png",
+    ],
     features: [
+      "Tivi",
+      "Tủ lạnh",
+      "Điều hòa",
       "Nhà tắm riêng",
       "Bếp chung",
       "Bàn trang điểm",
       "Tủ quần áo",
       "Máy sấy, bàn ủi",
-      "Máy chiếu",
       "Ghế bập bênh đôi",
       "Ban công",
     ],
-    description:
-      "Phòng deluxe với ban công thoáng mát, tầm nhìn đẹp và đầy đủ tiện nghi cao cấp",
+    description: "Giá giờ: 290.000đ/ combo 2h",
+    description1: "Giờ tiếp theo 80k/h | 430.000đ/ combo 4h",
   },
   {
     id: 2,
@@ -45,37 +55,26 @@ export const ROOMS = [
     priceNight: "450.000",
     priceDayNight: "500.000",
     image:
-      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      "/standard/standard1.png",
+    gallery: [
+      "/standard/standard1.png",
+      "/standard/standard2.png",
+      "/standard/standard3.png",
+      "/standard/standard4.png",
+      "/standard/standard5.png",
+    ],
     features: [
       "Nhà tắm riêng",
       "Bếp chung",
-      "Bàn trang điểm",
+      "Tủ lạnh",
       "Tủ quần áo",
+      "Bàn trang điểm",
       "Máy sấy, bàn ủi",
+      "Ghế thư giãn",
       "Máy chiếu",
       "Điều hòa",
     ],
-    description:
-      "Phòng standard plus với máy chiếu hiện đại, phù hợp cho giải trí và thư giãn",
-  },
-  {
-    id: 3,
-    name: "Phòng DELUXE Máy chiếu",
-    priceNight: "500.000",
-    priceDayNight: "550.000",
-    image:
-      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    features: [
-      "Nhà tắm riêng",
-      "Bếp riêng",
-      "Bàn trang điểm",
-      "Tủ quần áo",
-      "Máy sấy, bàn ủi",
-      "Máy chiếu",
-      "Sofa đôi, bàn trà",
-      "Ban công",
-    ],
-    description:
-      "Phòng deluxe cao cấp với máy chiếu 4K và không gian rộng rãi, sang trọng",
+    description: "Giá giờ:  260.000đ/ combo 2h",
+    description1: "Giờ tiếp theo 80k/h | 400.000đ/ combo 4h",
   },
 ] as const;

@@ -4,7 +4,7 @@ import FloatingContactButtons from "./components/ui/FloatingContactButtons";
 import Home from "./pages/Home";
 
 function App() {
-  const handleSectionChange = (section: string, scrollToElement?: string) => {
+  const handleSectionChange = ( scrollToElement?: string) => {
     // Navigate to section with smooth scrolling
     if (scrollToElement) {
       setTimeout(() => {

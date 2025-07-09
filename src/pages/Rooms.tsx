@@ -13,21 +13,23 @@ import {
   Home,
   Eye,
   SunSnow,
+  Flower,
+  Tv,
+  Refrigerator,
+  RockingChair,
 } from "lucide-react";
 import { useState, useEffect } from "react";
-import { ROOMS } from "@/lib/constants";
+import { HOMESTAY_INFO, ROOMS } from "@/lib/constants";
 import { Card, CardContent } from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
+import { ZaloSvg, PhoneSvg } from "@/components/Icons";
 
-interface RoomsProps {
-  onSectionChange: (section: string, scrollToElement?: string) => void;
-}
-
-export default function Rooms({ onSectionChange }: RoomsProps) {
+export default function Rooms() {
   const [selectedRoom, setSelectedRoom] = useState<
     null | (typeof ROOMS)[number]
   >(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [showContactPopup, setShowContactPopup] = useState(false);
 
   // Debug log for selectedImage changes
   useEffect(() => {
@@ -36,7 +38,7 @@ export default function Rooms({ onSectionChange }: RoomsProps) {
 
   // Prevent body scroll when modal is open
   useEffect(() => {
-    if (selectedRoom || selectedImage) {
+    if (selectedRoom || selectedImage || showContactPopup) {
       document.body.style.overflow = "hidden";
       document.body.style.paddingRight = "0px";
     } else {
@@ -48,12 +50,17 @@ export default function Rooms({ onSectionChange }: RoomsProps) {
       document.body.style.overflow = "unset";
       document.body.style.paddingRight = "0px";
     };
-  }, [selectedRoom, selectedImage]);
+  }, [selectedRoom, selectedImage, showContactPopup]);
 
   const getFeatureIcon = (feature: string) => {
+    if (feature.includes("Tivi")) return <Tv className="w-4 h-4" />;
+    if (feature.includes("Ghế bập bênh"))
+      return <RockingChair className="w-4 h-4" />;
+    if (feature.includes("Tủ lạnh"))
+      return <Refrigerator className="w-4 h-4" />;
     if (feature.includes("tắm")) return <Bath className="w-4 h-4" />;
     if (feature.includes("Bếp")) return <ChefHat className="w-4 h-4" />;
-    if (feature.includes("trang điểm")) return <Award className="w-4 h-4" />;
+    if (feature.includes("trang điểm")) return <Flower className="w-4 h-4" />;
     if (feature.includes("quần áo")) return <Shirt className="w-4 h-4" />;
     if (feature.includes("sấy") || feature.includes("ủi"))
       return <Wind className="w-4 h-4" />;
@@ -70,7 +77,7 @@ export default function Rooms({ onSectionChange }: RoomsProps) {
       {/* Rooms Grid */}
       <section id="room-selection" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {ROOMS.map((room, index) => (
               <motion.div
                 key={room.id}
@@ -92,16 +99,16 @@ export default function Rooms({ onSectionChange }: RoomsProps) {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                     <div className="absolute top-4 right-4 space-y-1">
                       <div className="gradient-primary text-white px-3 py-1 rounded-full font-semibold text-sm shadow-glow">
-                        {room.priceNight}₫/đêm
+                        {room.priceNight}₫/đêm (21:00 - 8:00)
                       </div>
                       <div className="bg-white/90 backdrop-blur-sm text-orange-600 px-3 py-1 rounded-full font-semibold text-xs">
-                        {room.priceDayNight}₫/ngày đêm
+                        {room.priceDayNight}₫/ngày đêm (14:00 - 12:00)
                       </div>
                     </div>
                     <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-orange-600 px-3 py-1 rounded-full text-sm font-semibold">
                       <div className="flex items-center space-x-1">
                         <Star className="w-4 h-4 text-amber-500 fill-current" />
-                        <span>4.9</span>
+                        <span>5.0</span>
                       </div>
                     </div>
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/20 flex items-center justify-center">
@@ -130,6 +137,8 @@ export default function Rooms({ onSectionChange }: RoomsProps) {
 
                     <p className="text-orange-600 mb-6 leading-relaxed drop-shadow-sm/20">
                       {room.description}
+                      <br />
+                      {room.description1}
                     </p>
 
                     <div className="space-y-3 mb-6">
@@ -138,7 +147,7 @@ export default function Rooms({ onSectionChange }: RoomsProps) {
                         <span>Tiện nghi đẳng cấp:</span>
                       </h4>
                       <div className="grid grid-cols-2 gap-2">
-                        {room.features.slice(0, 4).map((feature, idx) => (
+                        {room.features.map((feature, idx) => (
                           <motion.div
                             key={idx}
                             initial={{ opacity: 0, x: -10 }}
@@ -147,7 +156,7 @@ export default function Rooms({ onSectionChange }: RoomsProps) {
                             className="flex items-center space-x-2 text-sm text-orange-700 bg-orange-50 rounded-lg px-3 py-2"
                           >
                             <div className="text-orange-500">
-                              <Award className="w-3 h-3" />
+                              {getFeatureIcon(feature)}
                             </div>
                             <span className="font-medium">{feature}</span>
                           </motion.div>
@@ -160,7 +169,7 @@ export default function Rooms({ onSectionChange }: RoomsProps) {
                       whileTap={{ scale: 0.98 }}
                     >
                       <Button
-                        onClick={() => onSectionChange("home", "rooms-section")}
+                        onClick={() => setShowContactPopup(true)}
                         className="w-full gradient-primary text-white shadow-glow hover:shadow-2xl"
                       >
                         Đặt Phòng Ngay
@@ -222,6 +231,8 @@ export default function Rooms({ onSectionChange }: RoomsProps) {
             <div className="p-6">
               <p className="text-orange-700 text-lg mb-6 leading-relaxed">
                 {selectedRoom.description}
+                <br />
+                {selectedRoom.description1}
               </p>
 
               <div className="mb-6">
@@ -251,38 +262,32 @@ export default function Rooms({ onSectionChange }: RoomsProps) {
                   <span>Hình ảnh phòng:</span>
                 </h4>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {[1, 2, 3, 4, 5, 6].map((i) => {
-                    const imageUrl = `${selectedRoom.image}?view=${i}`;
-                    return (
-                      <div
-                        key={i}
-                        className="aspect-video bg-orange-100 rounded-lg overflow-hidden group relative cursor-pointer"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          console.log("Image clicked:", imageUrl);
-                          setSelectedImage(imageUrl);
-                        }}
-                      >
-                        <img
-                          src={selectedRoom.image}
-                          alt={`${selectedRoom.name} view ${i}`}
-                          className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                          <Eye className="w-6 h-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        </div>
+                  {selectedRoom.gallery.map((imageUrl, i) => (
+                    <div
+                      key={i}
+                      className="aspect-video bg-orange-100 rounded-lg overflow-hidden group relative cursor-pointer"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        console.log("Image clicked:", imageUrl);
+                        setSelectedImage(imageUrl);
+                      }}
+                    >
+                      <img
+                        src={imageUrl}
+                        alt={`${selectedRoom.name} view ${i + 1}`}
+                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                        <Eye className="w-6 h-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </div>
-                    );
-                  })}
+                    </div>
+                  ))}
                 </div>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
-                  onClick={() => {
-                    setSelectedRoom(null);
-                    onSectionChange("home", "rooms-section");
-                  }}
+                  onClick={() => setShowContactPopup(true)}
                   className="flex-1 gradient-primary text-white shadow-glow hover:shadow-2xl"
                 >
                   Đặt Phòng Ngay
@@ -330,8 +335,106 @@ export default function Rooms({ onSectionChange }: RoomsProps) {
               console.log("Outside clicked");
               setSelectedImage(null);
             }}
-          ></div>
+          >
+            {" "}
+          </div>
         </div>
+      )}
+
+      {/* Contact Popup */}
+      {showContactPopup && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+          onClick={() => setShowContactPopup(false)}
+        >
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            className="bg-white rounded-2xl max-w-md w-full shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="p-6">
+              {/* Header */}
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 gradient-primary rounded-full flex items-center justify-center mx-auto mb-4 overflow-hidden">
+                  <motion.div
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    <img src="logo.webp" alt="Logo" className="w-17 h-17"/>
+                  </motion.div>
+                </div>
+                <h3 className="text-2xl font-bold text-orange-800 mb-2">
+                  Liên Hệ Đặt Phòng
+                </h3>
+                <p className="text-orange-600">
+                  Hãy liên hệ với chúng tôi để đặt phòng và nhận ưu đãi tốt
+                  nhất!
+                </p>
+              </div>
+
+              {/* Contact Options */}
+              <div className="space-y-4 mb-6">
+                {/* Phone */}
+                <motion.a
+                  href={`tel:${HOMESTAY_INFO.phone}`}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex items-center p-4 pt-1 pb-1 bg-gradient-to-r from-green-50 to-green-100 rounded-xl border border-green-200 hover:shadow-lg transition-all duration-300 group"
+                >
+                  <div className="w-16 h-16 flex items-center justify-center">
+                    <PhoneSvg />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-green-800">Gọi Điện</h4>
+                    <p className="text-green-600">
+                      {HOMESTAY_INFO.phone}
+                    </p>
+                  </div>
+                  <div className="text-green-500 group-hover:translate-x-1 transition-transform duration-300">
+                    →
+                  </div>
+                </motion.a>
+
+                {/* Zalo */}
+                <motion.a
+                  href={`https://zalo.me/${HOMESTAY_INFO.phone.replace(/\s/g, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex items-center p-4 pt-1 pb-1 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl border border-blue-200 hover:shadow-lg transition-all duration-300 group"
+                >
+                  <div className="w-16 h-16 flex items-center justify-center">
+                    <ZaloSvg />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-blue-800">Chat Zalo</h4>
+                    <p className="text-blue-600">
+                      {HOMESTAY_INFO.phone}
+                    </p>
+                  </div>
+                  <div className="text-blue-500 group-hover:translate-x-1 transition-transform duration-300">
+                    →
+                  </div>
+                </motion.a>
+              </div>
+
+              {/* Close Button */}
+              <Button
+                onClick={() => setShowContactPopup(false)}
+                variant="outline"
+                className="w-full"
+              >
+                Đóng
+              </Button>
+            </div>
+          </motion.div>
+        </motion.div>
       )}
     </div>
   );
