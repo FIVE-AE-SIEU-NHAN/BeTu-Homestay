@@ -22,7 +22,7 @@ export default function Button({
   type = "button",
 }: ButtonProps) {
   const baseClasses =
-    "font-semibold rounded-xl transition-all duration-300 flex items-center justify-center space-x-2 relative overflow-hidden group";
+    "font-semibold rounded-xl transition-all duration-300 inline-flex items-center justify-center gap-2 relative overflow-hidden group";
 
   const variants = {
     primary:
@@ -58,7 +58,7 @@ export default function Button({
         className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"
         style={{ skewX: "-20deg" }}
       />
-      <span className="relative z-10">{children}</span>
+      <div className="relative z-10 flex items-center gap-2">{children}</div>
     </motion.button>
   );
 }

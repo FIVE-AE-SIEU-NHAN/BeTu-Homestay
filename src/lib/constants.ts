@@ -1,15 +1,13 @@
 export const HOMESTAY_INFO = {
   name: "BeTu Homestay",
   address: "357/10/13 Nguyễn Thị Thập, Phường 6, Mỹ Tho",
-  phone: "+84 xxx xxx xxx",
+  phone: "0931 077 099",
   email: "contact@betuhomestay.com",
   description:
     "Trải nghiệm không gian ấm cúng và hiện đại tại BeTu Homestay - nơi mang đến cho bạn cảm giác như ở nhà giữa lòng Mỹ Tho.",
   features: [
     "Phòng nghỉ tiện nghi",
     "Wi-Fi miễn phí",
-    "Ăn sáng tự chọn",
-    "Dịch vụ giặt ủi",
     "Bãi đậu xe",
     "Hỗ trợ 24/7",
   ],
@@ -17,43 +15,66 @@ export const HOMESTAY_INFO = {
 
 export const NAVIGATION_ITEMS = [
   { name: "Trang Chủ", href: "home", id: "home" },
-  { name: "Phòng", href: "rooms", id: "rooms" },
   { name: "Liên Hệ", href: "contact", id: "contact" },
 ] as const;
 
 export const ROOMS = [
   {
     id: 1,
-    name: "Phòng Deluxe",
-    price: "800.000",
+    name: "Phòng DELUXE Ban Công",
+    priceNight: "500.000",
+    priceDayNight: "550.000",
     image:
-      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    features: ["Giường đôi", "Phòng tắm riêng", "Điều hòa", "TV thông minh"],
-    description: "Phòng rộng rãi với thiết kế hiện đại và đầy đủ tiện nghi",
+      "/deluxe/deluxe.png",
+    gallery: [
+      "/deluxe/deluxe1.png",
+      "/deluxe/deluxe2.png",
+      "/deluxe/deluxe3.png",
+      "/slides/slide3.png",
+      "/deluxe/deluxe4.png",
+      "/deluxe/deluxe.png",
+    ],
+    features: [
+      "Tivi",
+      "Tủ lạnh",
+      "Điều hòa",
+      "Nhà tắm riêng",
+      "Bếp chung",
+      "Bàn trang điểm",
+      "Tủ quần áo",
+      "Máy sấy, bàn ủi",
+      "Ghế bập bênh đôi",
+      "Ban công",
+    ],
+    description: "Giá giờ: 290.000đ/ combo 2h",
+    description1: "Giờ tiếp theo 80k/h | 430.000đ/ combo 4h",
   },
   {
     id: 2,
-    name: "Phòng Standard",
-    price: "600.000",
+    name: "Phòng Standard Plus Máy chiếu",
+    priceNight: "450.000",
+    priceDayNight: "500.000",
     image:
-      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    features: ["Giường đơn", "Phòng tắm chung", "Điều hòa", "WiFi"],
-    description:
-      "Phòng tiện nghi với không gian ấm cúng, phù hợp cho người đi công tác",
-  },
-  {
-    id: 3,
-    name: "Phòng Gia Đình",
-    price: "1.200.000",
-    image:
-      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    features: [
-      "2 giường đôi",
-      "Phòng tắm riêng",
-      "Khu vực sinh hoạt",
-      "Tủ lạnh",
+      "/standard/standard1.png",
+    gallery: [
+      "/standard/standard1.png",
+      "/standard/standard2.png",
+      "/standard/standard3.png",
+      "/standard/standard4.png",
+      "/standard/standard5.png",
     ],
-    description:
-      "Không gian rộng rãi dành cho gia đình, có thể ở tối đa 6 người",
+    features: [
+      "Nhà tắm riêng",
+      "Bếp chung",
+      "Tủ lạnh",
+      "Tủ quần áo",
+      "Bàn trang điểm",
+      "Máy sấy, bàn ủi",
+      "Ghế thư giãn",
+      "Máy chiếu",
+      "Điều hòa",
+    ],
+    description: "Giá giờ:  260.000đ/ combo 2h",
+    description1: "Giờ tiếp theo 80k/h | 400.000đ/ combo 4h",
   },
 ] as const;
